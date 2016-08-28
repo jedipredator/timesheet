@@ -1,0 +1,66 @@
+<div>
+    <h2 translate="timeSheetApp.employee.home.title">Employees</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="employee.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="timeSheetApp.employee.home.createLabel">
+                        Create new Employee
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="name"><span translate="timeSheetApp.employee.name">Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="hourlyRate"><span translate="timeSheetApp.employee.hourlyRate">Hourly Rate</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="employeeLogin.id"><span translate="timeSheetApp.employee.employeeLogin">Employee Login</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="headOfEmployee.login"><span translate="timeSheetApp.employee.headOfEmployee">Head Of Employee</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="employee in vm.employees track by employee.id">
+                    <td><a ui-sref="employee-detail({id:employee.id})">{{employee.id}}</a></td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.hourlyRate}}</td>
+                    <td>
+                        {{employee.employeeLogin.login}}
+                    </td>
+                    <td>
+                        {{employee.headOfEmployee.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="employee-detail({id:employee.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="employee.edit({id:employee.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="employee.delete({id:employee.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+
+<div>
+    <h2><span translate="timeSheetApp.employee.detail.title">Employee</span> {{vm.employee.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="timeSheetApp.employee.name">Name</span></dt>
+        <dd>
+            <span>{{vm.employee.name}}</span>
+        </dd>
+        <dt><span translate="timeSheetApp.employee.hourlyRate">Hourly Rate</span></dt>
+        <dd>
+            <span>{{vm.employee.hourlyRate}}</span>
+        </dd>
+        <dt><span translate="timeSheetApp.employee.employeeLogin">Employee Login</span></dt>
+        <dd>
+            {{vm.employee.employeeLogin.login}}
+        </dd>
+        <dt><span translate="timeSheetApp.employee.headOfEmployee">Head Of Employee</span></dt>
+        <dd>
+            {{vm.employee.headOfEmployee.login}}
+        </dd>
+        <dt><span translate="timeSheetApp.employee.subsidiary">Subsidiary</span></dt>
+        <dd>
+            <span ng-repeat="subsidiary in vm.employee.subsidiaries">
+                {{subsidiary.login}}{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="employee-detail.edit({id:vm.employee.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

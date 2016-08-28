@@ -1,0 +1,88 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTimesheetLabel" translate="timeSheetApp.timesheet.home.createOrEditLabel">Create or edit a Timesheet</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.timesheet.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.timesheet.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="timeSheetApp.timesheet.approved" for="field_approved">Approved</label>
+            <input type="checkbox" class="form-control" name="approved" id="field_approved"
+                    ng-model="vm.timesheet.approved"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="timeSheetApp.timesheet.hours" for="field_hours">Hours</label>
+            <input type="number" class="form-control" name="hours" id="field_hours"
+                    ng-model="vm.timesheet.hours"
+                    min="0" />
+            <div ng-show="editForm.hours.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.hours.$error.min" translate="entity.validation.min" translate-value-min="0">
+                    This field should be more than 0.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.hours.$error.number" translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="timeSheetApp.timesheet.date" for="field_date">Date</label>
+                <div class="input-group">
+                    <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.timesheet.date" is-open="vm.datePickerOpenStatus.date"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.date.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.date.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="timeSheetApp.timesheet.project" for="field_project">Project</label>
+            <select class="form-control" id="field_project" name="project" ng-model="vm.timesheet.project" ng-options="project as project.name for project in vm.projects track by project.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.project.$invalid">
+            <p class="help-block"
+                ng-show="editForm.project.$error.required" translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label translate="timeSheetApp.timesheet.employee" for="field_employee">Employee</label>
+            <select class="form-control" id="field_employee" name="employee" ng-model="vm.timesheet.employee" ng-options="employee as employee.name for employee in vm.employees track by employee.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.employee.$invalid">
+            <p class="help-block"
+                ng-show="editForm.employee.$error.required" translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Employee.
+    -->
+    <changeSet id="20160826203935-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="employee_login_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee_employee_login_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="head_of_employee_id"
+                                 baseTableName="employee"
+                                 constraintName="fk_employee_head_of_employee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="employees_id"
+                                 baseTableName="employee_subsidiary"
+                                 constraintName="fk_employee_subsidiary_employees_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"/>
+        <addForeignKeyConstraint baseColumnNames="subsidiaries_id"
+                                 baseTableName="employee_subsidiary"
+                                 constraintName="fk_employee_subsidiary_subsidiaries_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+    </changeSet>
+</databaseChangeLog>

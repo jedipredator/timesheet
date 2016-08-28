@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span translate="timeSheetApp.timesheet.detail.title">Timesheet</span> {{vm.timesheet.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="timeSheetApp.timesheet.approved">Approved</span></dt>
+        <dd>
+            <span>{{vm.timesheet.approved}}</span>
+        </dd>
+        <dt><span translate="timeSheetApp.timesheet.hours">Hours</span></dt>
+        <dd>
+            <span>{{vm.timesheet.hours}}</span>
+        </dd>
+        <dt><span translate="timeSheetApp.timesheet.date">Date</span></dt>
+        <dd>
+            <span>{{vm.timesheet.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span translate="timeSheetApp.timesheet.project">Project</span></dt>
+        <dd>
+            <a ui-sref="project-detail({id:vm.timesheet.project.id})">{{vm.timesheet.project.name}}</a>
+        </dd>
+        <dt><span translate="timeSheetApp.timesheet.employee">Employee</span></dt>
+        <dd>
+            <a ui-sref="employee-detail({id:vm.timesheet.employee.id})">{{vm.timesheet.employee.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="timesheet-detail.edit({id:vm.timesheet.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

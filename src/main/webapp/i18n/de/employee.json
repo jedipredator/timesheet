@@ -1,0 +1,26 @@
+{
+    "timeSheetApp": {
+        "employee" : {
+            "home": {
+                "title": "Employees",
+                "createLabel": "Employee erstellen",
+                "createOrEditLabel": "Employee erstellen oder bearbeiten",
+                "search": "Suche nach Employee"
+            },
+            "created": "Employee erstellt mit ID {{ param }}",
+            "updated": "Employee aktualisiert mit ID {{ param }}",
+            "deleted": "Employee gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Employee {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Employee"
+            },
+            "name": "Name",
+            "hourlyRate": "Hourly Rate",
+            "employeeLogin": "Employee Login",
+            "headOfEmployee": "Head Of Employee",
+            "subsidiary": "Subsidiary"
+        }
+    }
+}
